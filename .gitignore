@@ -8,3 +8,5 @@
 /build
 /captures
 .externalNativeBuild
+google-services.json
+app/src/main/res/drawable/volcano_hawaii_12_22_17.png
