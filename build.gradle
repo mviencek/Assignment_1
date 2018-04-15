@@ -30,6 +30,7 @@ buildscript {
     dependencies {
         // ...
         classpath 'com.google.gms:google-services:3.2.0' // google-services plugin
+        classpath 'org.jacoco:org.jacoco.core:0.7.9' //jacoco plugin
     }
 }
 
