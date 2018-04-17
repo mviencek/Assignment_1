@@ -13,6 +13,13 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static org.hamcrest.CoreMatchers.not;
+import android.content.pm.ActivityInfo;
+import static android.support.test.espresso.action.ViewActions.typeText;
+
+
+
+
+
 @RunWith(AndroidJUnit4.class)
 public class main_activity_test {
 
@@ -22,11 +29,39 @@ public class main_activity_test {
 
 
     @Test
+    //makes sure the image is not there after menu click
+    public void removeCheck() {
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+        onView(withText(R.string.home))
+                .perform(click());
+        onView(withId(R.id.imageView)).check(matches(not(isDisplayed())));
+    }
+
+    @Test
+    public void canEnterNameAndRotate() {
+        onView(withId(R.id.nameEditText)).perform(typeText("Mike"));
+        activityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        // Make sure text view still has Mike on rotate
+        onView(withId(R.id.nameEditText))
+                .check(matches(withText("Mike")));
+    }
+
+    @Test
     //make sure the image is not there to begin with
     public void initialCheck(){
 
         onView(withId(R.id.imageView)).check(matches(not(isDisplayed())));
     }
+
+    @Test
+    public void canEnterUserNameAndRotate() {
+        onView(withId(R.id.usernameEditText)).perform(typeText("mikeTest"));
+        activityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        // Make sure text view still has Mike on rotate
+        onView(withId(R.id.usernameEditText))
+                .check(matches(withText("mikeTest")));
+    }
+
 
     @Test
     //makes sure the image is there after menu click
@@ -39,14 +74,12 @@ public class main_activity_test {
     }
 
     @Test
-    //makes sure the image is not there after menu click
-    public void removeCheck() {
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText(R.string.home))
-                .perform(click());
-        onView(withId(R.id.imageView)).check(matches(not(isDisplayed())));
+    public void canEnterEmailAndRotate() {
+        onView(withId(R.id.emailEditText)).perform(typeText("mike@test.com"));
+        activityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        // Make sure text view still has Mike on rotate
+        onView(withId(R.id.emailEditText))
+                .check(matches(withText("mike@test.com")));
     }
-
-
 
 }
