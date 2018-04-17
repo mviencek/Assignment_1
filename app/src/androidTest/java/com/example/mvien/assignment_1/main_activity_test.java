@@ -17,11 +17,23 @@ import android.content.pm.ActivityInfo;
 import static android.support.test.espresso.action.ViewActions.typeText;
 
 
+import android.support.test.espresso.contrib.PickerActions;
+import android.widget.DatePicker;
+
+
+import org.hamcrest.Matchers;
+
+
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
+import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
+
+
 
 
 
 @RunWith(AndroidJUnit4.class)
 public class main_activity_test {
+
 
     @Rule
     public ActivityTestRule<MainActivity> activityTestRule
@@ -80,6 +92,38 @@ public class main_activity_test {
         // Make sure text view still has Mike on rotate
         onView(withId(R.id.emailEditText))
                 .check(matches(withText("mike@test.com")));
+    }
+
+    @Test
+    public void checkBirthDate(){
+        int year = 2000;
+        int month = 2;
+        int day = 1;
+        onView(withId(R.id.button1)).perform(click());
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(year, month + 1, day)).check(matches(not(withText("mike@test.com"))));
+        onView(withId(android.R.id.button1)).perform(click());
+        onView(withId(R.id.ageEditText))
+                .check(matches(withText("3/1/2000")));
+    }
+    @Test
+    public void checkBadBirthDate(){
+        int year = 2010;
+        int month = 2;
+        int day = 1;
+        onView(withId(R.id.button1)).perform(click());
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(year, month + 1, day)).check(matches(not(withText("mike@test.com"))));
+        onView(withId(android.R.id.button1)).perform(click());
+        onView(withId(R.id.secondActivityBtn)).check(matches(not(isEnabled())));
+    }
+    @Test
+    public void checkGoodBirthDate(){
+        int year = 2000;
+        int month = 2;
+        int day = 1;
+        onView(withId(R.id.button1)).perform(click());
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(year, month + 1, day)).check(matches(not(withText("mike@test.com"))));
+        onView(withId(android.R.id.button1)).perform(click());
+        onView(withId(R.id.secondActivityBtn)).check(matches(isEnabled()));
     }
 
 }

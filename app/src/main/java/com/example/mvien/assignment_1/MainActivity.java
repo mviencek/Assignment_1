@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText ageEditText;
     private EditText ageText;
+
     private Calendar calendar;
     private int day, month, year;
 
