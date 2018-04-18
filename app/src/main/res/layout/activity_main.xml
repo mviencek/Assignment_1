@@ -22,6 +22,12 @@
 
     <include layout="@layout/content_main" />
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:gravity="center_vertical">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -84,4 +90,5 @@
             android:layout_height="wrap_content"
             android:hint="@string/author" />
     </LinearLayout>
+    </ScrollView>
 </android.support.design.widget.CoordinatorLayout>

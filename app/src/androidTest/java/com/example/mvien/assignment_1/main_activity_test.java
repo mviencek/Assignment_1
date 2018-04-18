@@ -54,7 +54,7 @@ public class main_activity_test {
     @Test
     //makes sure name is maintained on screen rotate
     public void canEnterNameAndRotate() {
-        onView(withId(R.id.nameEditText)).perform(typeText("Mike"));
+        onView(withId(R.id.nameEditText)).perform(typeText("Mike")).perform(ViewActions.closeSoftKeyboard());
         activityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         // Make sure text view still has Mike on rotate
         onView(withId(R.id.nameEditText))
@@ -70,7 +70,7 @@ public class main_activity_test {
 
     @Test
     public void canEnterUserNameAndRotate() {
-        onView(withId(R.id.usernameEditText)).perform(typeText("mikeTest"));
+        onView(withId(R.id.usernameEditText)).perform(typeText("mikeTest")).perform(ViewActions.closeSoftKeyboard());;
         activityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         // Make sure text view still has Mike on rotate
         onView(withId(R.id.usernameEditText))
@@ -91,7 +91,7 @@ public class main_activity_test {
     @Test
     //tests email and rotation
     public void canEnterEmailAndRotate() {
-        onView(withId(R.id.emailEditText)).perform(typeText("mike@test.com"));
+        onView(withId(R.id.emailEditText)).perform(typeText("mike@test.com")).perform(ViewActions.closeSoftKeyboard());;
         activityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         // Make sure text view still has Mike on rotate
         onView(withId(R.id.emailEditText))
