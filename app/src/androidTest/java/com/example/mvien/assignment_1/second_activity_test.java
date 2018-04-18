@@ -2,10 +2,8 @@ package com.example.mvien.assignment_1;
 
 import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;
-
 import org.junit.Rule;
 import org.junit.Test;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -36,7 +34,6 @@ public class second_activity_test {
     @Test
     //tests the go back button and makes sure the form is empty
     public void goBack(){
-
         onView(withId(R.id.mainActivityButton)).perform(click());
         onView(withId(R.id.ageEditText)).check(matches(withText("")));
         onView(withId(R.id.usernameEditText)).check(matches(withText("")));

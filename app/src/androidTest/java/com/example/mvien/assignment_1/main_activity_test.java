@@ -6,8 +6,6 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-
-import static android.support.test.espresso.Espresso.closeSoftKeyboard;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -45,6 +43,13 @@ public class main_activity_test {
                 .perform(click());
         onView(withId(R.id.imageView)).check(matches(not(isDisplayed())));
     }
+
+    @Test
+    //make sure log in button isnt enabled to begin with
+    public void notEnabled(){
+        onView(withId(R.id.secondActivityBtn)).check(matches(not(isEnabled())));
+    }
+
 
     @Test
     //makes sure name is maintained on screen rotate
@@ -116,6 +121,7 @@ public class main_activity_test {
         onView(withId(android.R.id.button1)).perform(click());
         onView(withId(R.id.secondActivityBtn)).check(matches(not(isEnabled())));
     }
+
     @Test
     //checks to see if the button is enabled on valid birthday
     public void checkGoodBirthDate(){
