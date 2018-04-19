@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 
 public class SecondActivity extends AppCompatActivity {
-
-    private static final String TAG = SecondActivity.class.getSimpleName();
     TextView textView;
 
     @Override
@@ -28,25 +26,27 @@ public class SecondActivity extends AppCompatActivity {
             String name = b.getString(Constants.KEY_NAME);
             msg.append(name).append("!\n");
         }
-        if (b.containsKey(Constants.KEY_AGE)) {
-
+       /* if (b.containsKey(Constants.KEY_AGE)) {
+            //todo:  something with age
+            //String age = b.getString(Constants.KEY_AGE);
         }
         if (b.containsKey(Constants.KEY_USERNAME)) {
-            String username = b.getString(Constants.KEY_USERNAME);
+            //todo:  something with username
+           // String username = b.getString(Constants.KEY_USERNAME);
 
         }
-        if (b.containsKey(Constants.KEY_NAME)) {
-            String email = b.getString(Constants.KEY_EMAIL);
+        if (b.containsKey(Constants.KEY_EMAIL)) {
+            //todo:  something with email
+            //String email = b.getString(Constants.KEY_EMAIL);
 
         }
         if (b.containsKey(Constants.KEY_BIRTHDAY)) {
-            String birthday = b.getString(Constants.KEY_BIRTHDAY);
+            //todo:  something with birthday
+            //String birthday = b.getString(Constants.KEY_BIRTHDAY);
 
-        }
+        }*/
 
         textView.setText(msg);
-
-        Log.i(TAG, "onCreate()");
     }
 
     public void goToMainActivity(View view)
