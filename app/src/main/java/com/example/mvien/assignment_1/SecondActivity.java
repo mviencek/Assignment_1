@@ -54,4 +54,14 @@ public class SecondActivity extends AppCompatActivity {
         Intent intent = new Intent(SecondActivity.this, MainActivity.class);
         startActivity(intent);
     }
+
+    //erases form on back button press
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+        finish();
+}
 }

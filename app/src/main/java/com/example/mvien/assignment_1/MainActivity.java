@@ -191,4 +191,5 @@ public class MainActivity extends AppCompatActivity {
         outState.putString(Constants.KEY_USERNAME, usernameEditText.getText().toString());
 
     }
+
 }
