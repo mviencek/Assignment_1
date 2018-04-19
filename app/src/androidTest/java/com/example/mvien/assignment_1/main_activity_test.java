@@ -113,9 +113,9 @@ public class main_activity_test {
     @Test
     //makes sure the button is disabled on invalid birthday
     public void checkBadBirthDate(){
-        int year = 2010;
-        int month = 2;
-        int day = 1;
+        int year = 2000;
+        int month = 4;
+        int day = 30;
         onView(withId(R.id.button1)).perform(click());
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(year, month + 1, day)).check(matches(not(withText("mike@test.com"))));
         onView(withId(android.R.id.button1)).perform(click());

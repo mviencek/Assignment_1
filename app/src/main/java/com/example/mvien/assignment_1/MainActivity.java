@@ -83,16 +83,21 @@ public class MainActivity extends AppCompatActivity {
         int days =  Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         Date now = new Date(year,month,day);
         Date then = new Date(years, months, days);
-        int year1 = then.getYear();
-        int year2 = now.getYear();
+        Calendar n = Calendar.getInstance();
+        Calendar t = Calendar.getInstance();
+        n.setTime(now);
+        t.setTime(then);
+        int year1 = t.get(Calendar.YEAR);
+        int year2 = n.get(Calendar.YEAR);
         int age = year1 - year2;
-        int month1 = then.getMonth();
-        int month2 = now.getMonth();
+        int month1 = t.get(Calendar.MONTH);
+        int month2 = n.get(Calendar.MONTH);
         if (month2 > month1) {
             age--;
-        } else if (month1 == month2) {
-            int day1 = then.getDay();
-            int day2 = now.getDay();
+        }
+        else if (month1 == month2) {
+            int day1 = t.get(Calendar.DAY_OF_MONTH);
+            int day2 = n.get(Calendar.DAY_OF_MONTH);
             if (day2 > day1) {
                 age--;
             }
