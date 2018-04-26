@@ -36,16 +36,14 @@ public class SecondActivity extends AppCompatActivity {
         }
         if (b.containsKey(Constants.KEY_USERNAME)) {
            String userName = b.getString(Constants.KEY_USERNAME);
-           if(userName != null) {
-               usersName.setText(userName.toUpperCase());
-           }
+           usersName.setText(userName.toUpperCase());
+
 
         }
         if (b.containsKey(Constants.KEY_OCCUPATION)) {
             String occupation = b.getString(Constants.KEY_OCCUPATION);
-            if(occupation != null) {
-                job.setText(occupation.toUpperCase());
-            }
+            job.setText(occupation.toUpperCase());
+
 
         }
         if (b.containsKey(Constants.KEY_DESCRIPTION)) {

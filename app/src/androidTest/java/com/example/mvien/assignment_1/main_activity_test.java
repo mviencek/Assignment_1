@@ -68,6 +68,7 @@ public class main_activity_test {
 
 
 
+
     @Test
     //checks the birthdate field
     public void checkBirthDate(){
@@ -87,6 +88,18 @@ public class main_activity_test {
         onView(withId(R.id.nameEditText)).perform(typeText("Mike")).perform(ViewActions.closeSoftKeyboard());
         int year = 2000;
         int month = 3;
+        int day = 30;
+        onView(withId(R.id.button1)).perform(click());
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(year, month + 1, day)).check(matches(not(withText("mike@test.com"))));
+        onView(withId(android.R.id.button1)).perform(click());
+        onView(withId(R.id.secondActivityBtn)).check(matches(not(isEnabled())));
+    }
+    @Test
+    //makes sure the button is disabled on invalid (month) birthday
+    public void checkBadBirthDate2(){
+        onView(withId(R.id.nameEditText)).perform(typeText("Mike")).perform(ViewActions.closeSoftKeyboard());
+        int year = 2000;
+        int month = 6;
         int day = 30;
         onView(withId(R.id.button1)).perform(click());
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(year, month + 1, day)).check(matches(not(withText("mike@test.com"))));
