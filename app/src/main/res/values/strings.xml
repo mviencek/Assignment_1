@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Mobile Applications Assignment_1</string>
     <string name="swapText">Display Image</string>
-    <string name="author">Mikal Viencek  4/16/2018</string>
+    <string name="author">Mikal Viencek  4/23/2018</string>
     <string name="greetings">Hello World!</string>
     <string name="home">Hide</string>
     <string name="enter_name">Enter Name: </string>
@@ -14,4 +14,10 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="date_button_set">Set Age</string>
+    <string name="description">Tell Us About Yourself: </string>
+    <string name="occupation">What\'s Your Occupation: </string>
+    <string name="clientsAge">Age: </string>
+    <string name="job">Occupation: </string>
+    <string name="giraffe">Giraffe</string>
+    <string name="welcome">Please enter your profile information.</string>
 </resources>

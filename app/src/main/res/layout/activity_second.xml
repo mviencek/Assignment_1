@@ -1,21 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/profilePic"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/giraffe"
+        android:contentDescription="@string/giraffe"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/usersName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textColor="#8e8c8c"
-        android:textSize="30sp"
-        android:textStyle="bold"/>
+        android:layout_below="@id/profilePic"
+        android:layout_marginLeft="75dp"
+        android:layout_marginStart="75dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/mainActivityButton"
+    <TextView
+        android:id="@+id/usersAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/go_to_main_activity"
-        android:onClick="goToMainActivity"/>
+        android:layout_toEndOf="@id/usersName"
+        android:layout_below="@id/profilePic"
+        android:layout_marginLeft="130dp"
+        android:layout_marginStart="130dp"
+        android:layout_toRightOf="@id/usersName"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/job"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/usersName"
+        android:layout_marginStart="75dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="30dp"
+        android:textSize="15sp" />
+    <TextView
+        android:id="@+id/descript"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/job"
+        android:layout_marginLeft="75dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="30dp"
+        android:textSize="15sp"
+        />
+
+
 </RelativeLayout>
+</ScrollView>

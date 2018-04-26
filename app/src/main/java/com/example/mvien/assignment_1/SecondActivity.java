@@ -10,49 +10,50 @@ import android.widget.TextView;
 
 public class SecondActivity extends AppCompatActivity {
     TextView textView;
+    TextView usersName;
+    TextView usersAge;
+    TextView job;
+    TextView descript;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        textView = findViewById(R.id.textView);
+        usersName = findViewById(R.id.usersName);
+        usersAge = findViewById(R.id.usersAge);
+        job = findViewById(R.id.job);
+        descript = findViewById(R.id.descript);
 
-        StringBuilder msg = new StringBuilder("Thanks for signing up ");
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
 
         assert b != null;
         if (b.containsKey(Constants.KEY_NAME)) {
             String name = b.getString(Constants.KEY_NAME);
-            msg.append(name).append("!\n");
         }
-       /* if (b.containsKey(Constants.KEY_AGE)) {
-            //todo:  something with age
-            //String age = b.getString(Constants.KEY_AGE);
+        if (b.containsKey(Constants.KEY_AGE)) {
+            String age = b.getString(Constants.KEY_AGE);
+            usersAge.setText(age);
         }
         if (b.containsKey(Constants.KEY_USERNAME)) {
-            //todo:  something with username
-           // String username = b.getString(Constants.KEY_USERNAME);
+           String userName = b.getString(Constants.KEY_USERNAME);
+           if(userName != null) {
+               usersName.setText(userName.toUpperCase());
+           }
 
         }
-        if (b.containsKey(Constants.KEY_EMAIL)) {
-            //todo:  something with email
-            //String email = b.getString(Constants.KEY_EMAIL);
+        if (b.containsKey(Constants.KEY_OCCUPATION)) {
+            String occupation = b.getString(Constants.KEY_OCCUPATION);
+            if(occupation != null) {
+                job.setText(occupation.toUpperCase());
+            }
 
         }
-        if (b.containsKey(Constants.KEY_BIRTHDAY)) {
-            //todo:  something with birthday
-            //String birthday = b.getString(Constants.KEY_BIRTHDAY);
+        if (b.containsKey(Constants.KEY_DESCRIPTION)) {
+            String description = b.getString(Constants.KEY_DESCRIPTION);
+            descript.setText(description);
 
-        }*/
-
-        textView.setText(msg);
-    }
-
-    public void goToMainActivity(View view)
-    {
-        Intent intent = new Intent(SecondActivity.this, MainActivity.class);
-        startActivity(intent);
+        }
     }
 
     //erases form on back button press

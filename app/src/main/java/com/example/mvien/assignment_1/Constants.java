@@ -7,4 +7,6 @@ public class Constants {
     static final String KEY_USERNAME = "username";
     static final String KEY_EMAIL = "email";
     static final String KEY_BIRTHDAY = "birthday";
+    static final String KEY_OCCUPATION ="occupation";
+    static final String KEY_DESCRIPTION = "description";
 }

@@ -2,9 +2,6 @@ package com.example.mvien.assignment_1;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ImageView;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +13,8 @@ import java.util.Date;
 import java.util.Calendar;
 import android.widget.DatePicker;
 import android.widget.Toast;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     private Button secondActivityBtn;
@@ -24,15 +23,24 @@ public class MainActivity extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText ageEditText;
     private EditText ageText;
+    private EditText occupation;
+    private EditText description;
 
-    private Calendar calendar;
-    private int day, month, year;
+    //dialog listener
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0,
+                                      int arg1, int arg2, int arg3) {
+                    showDate(arg1, arg2, arg3);
+                }
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         editText = findViewById(R.id.nameEditText);
@@ -44,34 +52,29 @@ public class MainActivity extends AppCompatActivity {
         secondActivityBtn.setEnabled(false);
         ageEditText.setFocusable(false);
         ageText.setFocusable(false);
+        occupation = findViewById(R.id.occupation);
+        description = findViewById(R.id.description);
     }
 
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
         showDialog(999);
-        Toast.makeText(getApplicationContext(), "ca",
-                Toast.LENGTH_SHORT)
+        Toast.makeText(getApplicationContext(), "Calendar",
+                Toast.LENGTH_LONG)
                 .show();
     }
 
     @Override
+    //dialog
     protected Dialog onCreateDialog(int id) {
         if (id == 999) {
             return new DatePickerDialog(this,
-                    myDateListener, month, day, year);
+                    myDateListener, 2000, 0, 1);
         }
         return null;
     }
 
-    private DatePickerDialog.OnDateSetListener myDateListener = new
-            DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker arg0,
-                                      int arg1, int arg2, int arg3) {
-                    showDate(arg1, arg2, arg3);
-                }
-            };
-
+    //setting age and birthday
     private void showDate(int year, int month, int day) {
         //put bithdate in field
        ageEditText.setText(new StringBuilder().append(month+1).append("/")
@@ -113,53 +116,89 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        //if display image is selected
-        if (id == R.id.action_image) {
-            ImageView image = findViewById(R.id.imageView);
-            image.setImageResource(R.drawable.volcano_hawaii_12_22_17);
-            return true;
+    //displays error and returns false if empty.
+    private boolean isValidName(String name)
+    {
+        boolean valid = false;
+        if(name.trim().length() == 0){
+            editText.setError("Name is required!");
         }
-
-        //if home is selected.  remove image.
-        if(id == R.id.home)
+        else{
+            valid = true;
+        }
+        return valid;
+    }
+    //displays error and returns false if empty.
+    private boolean isValidUserName(String userName)
+    {
+        boolean valid = false;
+        if(userName.trim().length() == 0){
+            usernameEditText.setError("User Name is required!");
+        }
+        else{
+            valid = true;
+        }
+        return valid;
+    }
+    //displays error and returns false if empty.
+    private boolean isValidEmail(String email)
+    {
+        boolean valid = false;
+        if(email.trim().length() == 0) {
+            emailEditText.setError( "Occupation is required!" );
+        }
+        else{
+            valid = true;
+        }
+        return valid;
+    }
+    //displays error and returns false if empty.
+    private boolean isValidJob(String job)
+    {
+        boolean valid = false;
+        if(job.trim().length() == 0)
         {
-            ImageView image = findViewById(R.id.imageView);
-            image.setImageDrawable(null);
-            return true;
-
+            occupation.setError( "Occupation is required!" );
         }
+        else{
+            valid = true;
+        }
+        return valid;
+    }
+    //displays error and returns false if empty.
+    private boolean isValidDesc(String descript)
+    {
+        boolean valid = false;
+        if (descript.trim().length() == 0) {
 
-        //else return parent function
-        return super.onOptionsItemSelected(item);
+            description.setError("Description required!");
+        }
+        else{
+            valid = true;
+        }
+        return valid;
     }
 
+    //traveling to the second activity with a bundle
     public void goToSecondActivity(View view) {
-        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-        intent.putExtra(Constants.KEY_NAME, editText.getText().toString().trim());
-        intent.putExtra(Constants.KEY_USERNAME, usernameEditText.getText().toString().trim());
-        intent.putExtra(Constants.KEY_EMAIL, emailEditText.getText().toString().trim());
-        intent.putExtra(Constants.KEY_AGE,  ageEditText.getText().toString().trim());
-        intent.putExtra(Constants.KEY_BIRTHDAY, ageText.getText().toString().trim());
-        startActivity(intent);
+        //only go to second activity if all fields arent empty(valid)
+        if(isValidName(editText.getText().toString()) && isValidUserName(usernameEditText.getText().toString())
+                && isValidEmail(emailEditText.getText().toString()) && isValidJob(occupation.getText().toString())
+                && isValidDesc(description.getText().toString())) {
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            intent.putExtra(Constants.KEY_NAME, editText.getText().toString().trim());
+            intent.putExtra(Constants.KEY_USERNAME, usernameEditText.getText().toString().trim());
+            intent.putExtra(Constants.KEY_EMAIL, emailEditText.getText().toString().trim());
+            intent.putExtra(Constants.KEY_AGE, ageText.getText().toString().trim());
+            intent.putExtra(Constants.KEY_BIRTHDAY, ageEditText.getText().toString().trim());
+            intent.putExtra(Constants.KEY_OCCUPATION, occupation.getText().toString().trim());
+            intent.putExtra(Constants.KEY_DESCRIPTION, description.getText().toString().trim());
+            startActivity(intent);
+        }
     }
 
     @Override
+    //restoring info
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
@@ -178,9 +217,16 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState.containsKey(Constants.KEY_EMAIL)) {
             emailEditText.setText((String)savedInstanceState.get(Constants.KEY_EMAIL));
         }
+        if(savedInstanceState.containsKey(Constants.KEY_DESCRIPTION)){
+            description.setText((String)savedInstanceState.get(Constants.KEY_DESCRIPTION));
+        }
+        if(savedInstanceState.containsKey(Constants.KEY_OCCUPATION)){
+            occupation.setText((String)savedInstanceState.get((Constants.KEY_OCCUPATION)));
+        }
     }
 
     @Override
+    //saving form info
     public void onSaveInstanceState(Bundle outState) {
 
         super.onSaveInstanceState(outState);
@@ -189,6 +235,8 @@ public class MainActivity extends AppCompatActivity {
         outState.putString(Constants.KEY_BIRTHDAY, ageEditText.getText().toString());
         outState.putString(Constants.KEY_AGE, ageText.getText().toString());
         outState.putString(Constants.KEY_USERNAME, usernameEditText.getText().toString());
+        outState.putString(Constants.KEY_OCCUPATION, occupation.getText().toString());
+        outState.putString(Constants.KEY_DESCRIPTION, description.getText().toString());
 
     }
 
