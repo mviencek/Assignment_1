@@ -27,7 +27,6 @@ public class SecondActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
 
-        assert b != null;
         if (b.containsKey(Constants.KEY_NAME)) {
             String name = b.getString(Constants.KEY_NAME);
         }
