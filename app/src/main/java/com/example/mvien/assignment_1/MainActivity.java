@@ -108,10 +108,12 @@ public class MainActivity extends AppCompatActivity {
         ageText.setText(String.valueOf(age));
         //if client is over 18 enable button
         if(age>=18){
+            ageText.setError(null);
             secondActivityBtn.setEnabled(true);
         }
         else
         {
+            ageText.setError("Must be over 18 years of age!");
             secondActivityBtn.setEnabled(false);
         }
 
