@@ -2,6 +2,8 @@ package com.example.mvien.assignment_1;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import android.support.test.espresso.Espresso;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -87,7 +89,7 @@ public class main_activity_test {
     public void checkBadBirthDate(){
         onView(withId(R.id.nameEditText)).perform(typeText("Mike")).perform(ViewActions.closeSoftKeyboard());
         int year = 2000;
-        int month = 3;
+        int month = 4;
         int day = 30;
         onView(withId(R.id.button1)).perform(click());
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(year, month + 1, day)).check(matches(not(withText("mike@test.com"))));
@@ -164,6 +166,16 @@ public class main_activity_test {
         intended(hasExtra(Constants.KEY_OCCUPATION, "Chef"));
         intended(hasExtra(Constants.KEY_DESCRIPTION, "Inputting test information!"));
         Intents.release();
+
+        //now go back and make sure the form is empty
+        Espresso.pressBack();
+        onView(withId(R.id.ageEditText)).check(matches(withText("")));
+        onView(withId(R.id.usernameEditText)).check(matches(withText("")));
+        onView(withId(R.id.emailEditText)).check(matches(withText("")));
+        onView(withId(R.id.ageText)).check(matches(withText("")));
+        onView(withId(R.id.nameEditText)).check(matches(withText("")));
     }
+
+
 
 }

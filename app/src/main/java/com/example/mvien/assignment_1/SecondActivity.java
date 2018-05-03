@@ -1,56 +1,35 @@
 package com.example.mvien.assignment_1;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+
 
 public class SecondActivity extends AppCompatActivity {
-    TextView textView;
-    TextView usersName;
-    TextView usersAge;
-    TextView job;
-    TextView descript;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // set the content of the activity
         setContentView(R.layout.activity_second);
-        usersName = findViewById(R.id.usersName);
-        usersAge = findViewById(R.id.usersAge);
-        job = findViewById(R.id.job);
-        descript = findViewById(R.id.descript);
 
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
 
-        if (b.containsKey(Constants.KEY_NAME)) {
-            String name = b.getString(Constants.KEY_NAME);
-        }
-        if (b.containsKey(Constants.KEY_AGE)) {
-            String age = b.getString(Constants.KEY_AGE);
-            usersAge.setText(age);
-        }
-        if (b.containsKey(Constants.KEY_USERNAME)) {
-           String userName = b.getString(Constants.KEY_USERNAME);
-           usersName.setText(userName.toUpperCase());
+        // find the view pager that will allow the user to swipe between fragments
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
+        // create an adapter that knows which fragment should be shown on each page
+        FragAdapter adapter = new FragAdapter(this, getSupportFragmentManager(), b);
 
-        }
-        if (b.containsKey(Constants.KEY_OCCUPATION)) {
-            String occupation = b.getString(Constants.KEY_OCCUPATION);
-            job.setText(occupation.toUpperCase());
+        // set the adapter
+        viewPager.setAdapter(adapter);
 
-
-        }
-        if (b.containsKey(Constants.KEY_DESCRIPTION)) {
-            String description = b.getString(Constants.KEY_DESCRIPTION);
-            descript.setText(description);
-
-        }
+        // add viewpager
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     //erases form on back button press
@@ -61,5 +40,5 @@ public class SecondActivity extends AppCompatActivity {
         intent.putExtra("EXIT", true);
         startActivity(intent);
         finish();
-}
+    }
 }

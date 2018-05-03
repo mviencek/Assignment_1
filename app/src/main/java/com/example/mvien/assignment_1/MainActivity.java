@@ -1,7 +1,6 @@
 package com.example.mvien.assignment_1;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -40,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         editText = findViewById(R.id.nameEditText);
         emailEditText = findViewById(R.id.emailEditText);
         usernameEditText = findViewById(R.id.usernameEditText);
@@ -196,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(Constants.KEY_OCCUPATION, occupation.getText().toString().trim());
             intent.putExtra(Constants.KEY_DESCRIPTION, description.getText().toString().trim());
             startActivity(intent);
+
         }
     }
 

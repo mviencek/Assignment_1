@@ -6,6 +6,7 @@ import android.support.test.rule.ActivityTestRule;
 import org.junit.Rule;
 import org.junit.Test;
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -38,7 +39,7 @@ public class second_activity_test {
     //verifies message
     public void setsRightUserNameBasedOnIntentExtra() {
         onView(withId(R.id.usersName))
-                .check(matches(withText("MVIENCEK")));
+                .check(matches(withText("mviencek")));
     }
 
     @Test
@@ -52,7 +53,7 @@ public class second_activity_test {
     //verifies message
     public void setsRightOccupationBasedOnIntentExtra() {
         onView(withId(R.id.job))
-                .check(matches(withText("CHEF")));
+                .check(matches(withText("Chef")));
     }
 
     @Test
@@ -62,15 +63,24 @@ public class second_activity_test {
                 .check(matches(withText("Inputting test data!")));
     }
 
+    @Test
+    public void testMatches()
+    {
+        onView(withText(R.string.matches))
+                .perform(click());
+        onView(withText(R.string.matches_go_here))
+                .check(matches(withText("Matches will go here")));
+    }
 
     @Test
-    //tests the go back button and makes sure the form is empty
-    public void goBackButton() {
-        Espresso.pressBack();
-        onView(withId(R.id.ageEditText)).check(matches(withText("")));
-        onView(withId(R.id.usernameEditText)).check(matches(withText("")));
-        onView(withId(R.id.emailEditText)).check(matches(withText("")));
-        onView(withId(R.id.ageText)).check(matches(withText("")));
-        onView(withId(R.id.nameEditText)).check(matches(withText("")));
+    public void testSettings()
+    {
+        onView(withText(R.string.settings))
+                .perform(click());
+        onView(withText(R.string.settings_go_here))
+                .check(matches(withText("Settings go here")));
     }
+
+
+
 }
