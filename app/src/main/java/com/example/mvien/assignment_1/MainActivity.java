@@ -12,8 +12,6 @@ import java.util.Date;
 import java.util.Calendar;
 import android.widget.DatePicker;
 import android.widget.Toast;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     private Button secondActivityBtn;

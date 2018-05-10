@@ -2,11 +2,15 @@ package com.example.mvien.assignment_1;
 
 import android.content.Intent;
 import android.support.test.espresso.Espresso;
+import android.support.test.espresso.contrib.RecyclerViewActions;
+import static org.hamcrest.Matcher.*;
 import android.support.test.rule.ActivityTestRule;
 import org.junit.Rule;
 import org.junit.Test;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -63,13 +67,29 @@ public class second_activity_test {
                 .check(matches(withText("Inputting test data!")));
     }
 
+
+    @Test
+    public void testButtonFav()
+    {
+        onView(withText(R.string.matches))
+                .perform(click());
+        onView(withRecyclerView(R.id.my_recycler_view)
+                .atPositionOnView(0, R.id.favorite_button))
+                .perform(click());
+    }
     @Test
     public void testMatches()
     {
         onView(withText(R.string.matches))
                 .perform(click());
-        onView(withText(R.string.matches_go_here))
-                .check(matches(withText("Matches will go here")));
+        onView(withRecyclerView(R.id.my_recycler_view).atPosition(0))
+                .check(matches(hasDescendant(withText("Mary"))));
+    }
+
+
+    // Convenience helper
+    public static RecyclerViewMatcher withRecyclerView(final int recyclerViewId) {
+        return new RecyclerViewMatcher(recyclerViewId);
     }
 
     @Test

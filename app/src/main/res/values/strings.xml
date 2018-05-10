@@ -25,4 +25,13 @@
     <string name="settings">Settings</string>
     <string name="matches_go_here">Matches will go here</string>
     <string name="settings_go_here">Settings go here</string>
+
+
+
+    <string name="person_name"></string>
+    <string name="person_desc">
+    </string>
+    <string name="detail_desc">
+    </string>
+    <string name="detail_location"></string>
 </resources>
