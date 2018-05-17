@@ -12,6 +12,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 //we have to put threads to sleep and wait for the ui to populate now
+// 6 second delay in case of slow internet
 
 public class second_activity_test {
     @Rule
@@ -33,7 +34,7 @@ public class second_activity_test {
 
     @Test
     public void checkImage()  throws InterruptedException{
-        Thread.sleep(4000);
+        Thread.sleep(6000);
         onView(withText(R.string.profile))
                 .perform(click());
         onView(withId(R.id.profilePic)).check(matches(isDisplayed()));
@@ -42,7 +43,7 @@ public class second_activity_test {
     @Test
     //verifies message
     public void setsRightUserNameBasedOnIntentExtra() throws InterruptedException{
-        Thread.sleep(4000);
+        Thread.sleep(8000);
         onView(withText(R.string.profile))
                 .perform(click());
         onView(withId(R.id.usersName))
@@ -52,7 +53,7 @@ public class second_activity_test {
     @Test
     //verifies message
     public void setsRightAgeBasedOnIntentExtra() throws InterruptedException {
-        Thread.sleep(4000);
+        Thread.sleep(6000);
         onView(withText(R.string.profile))
                 .perform(click());
         onView(withId(R.id.usersAge))
@@ -62,7 +63,7 @@ public class second_activity_test {
     @Test
     //verifies message
     public void setsRightOccupationBasedOnIntentExtra() throws InterruptedException{
-        Thread.sleep(4000);
+        Thread.sleep(6000);
         onView(withText(R.string.profile))
                 .perform(click());
         onView(withId(R.id.job))
@@ -72,7 +73,7 @@ public class second_activity_test {
     @Test
     //verifies message
     public void setsRightDescriptBasedOnIntentExtra() throws InterruptedException {
-        Thread.sleep(4000);
+        Thread.sleep(6000);
         onView(withText(R.string.profile))
                 .perform(click());
         onView(withId(R.id.descript))
@@ -83,7 +84,7 @@ public class second_activity_test {
     @Test
     public void testButtonFav() throws InterruptedException
     {
-        Thread.sleep(4000);
+        Thread.sleep(6000);
         onView(withText(R.string.matches))
                 .perform(click());
         onView(withRecyclerView(R.id.my_recycler_view)
@@ -94,7 +95,7 @@ public class second_activity_test {
     @Test
     public void testButtonFavAgain() throws InterruptedException
     {
-        Thread.sleep(4000);
+        Thread.sleep(6000);
         onView(withText(R.string.matches))
                 .perform(click());
         onView(withRecyclerView(R.id.my_recycler_view)
@@ -104,7 +105,7 @@ public class second_activity_test {
     @Test
     public void testMatches() throws InterruptedException
     {
-        Thread.sleep(4000);
+        Thread.sleep(6000);
         onView(withText(R.string.matches))
                 .perform(click());
         onView(withRecyclerView(R.id.my_recycler_view).atPosition(0))
@@ -120,7 +121,7 @@ public class second_activity_test {
     @Test
     public void testSettings() throws InterruptedException
     {
-        Thread.sleep(4000);
+        Thread.sleep(6000);
         onView(withText(R.string.settings))
                 .perform(click());
         onView(withText(R.string.settings_go_here))
