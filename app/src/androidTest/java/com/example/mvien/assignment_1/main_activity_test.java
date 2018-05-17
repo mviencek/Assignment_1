@@ -36,8 +36,6 @@ public class main_activity_test {
             = new ActivityTestRule<>(MainActivity.class);
 
 
-
-
     @Test
     //make sure log in button isnt enabled to begin with
     public void notEnabled(){
@@ -67,10 +65,6 @@ public class main_activity_test {
                 .check(matches(withText("mike@test.com")));
     }
 
-
-
-
-
     @Test
     //checks the birthdate field
     public void checkBirthDate(){
@@ -84,6 +78,8 @@ public class main_activity_test {
         onView(withId(R.id.ageEditText))
                 .check(matches(withText("3/1/2000")));
     }
+
+
     @Test
     //makes sure the button is disabled on invalid birthday
     public void checkBadBirthDate(){
@@ -96,6 +92,8 @@ public class main_activity_test {
         onView(withId(android.R.id.button1)).perform(click());
         onView(withId(R.id.secondActivityBtn)).check(matches(not(isEnabled())));
     }
+
+
     @Test
     //makes sure the button is disabled on invalid (month) birthday
     public void checkBadBirthDate2(){

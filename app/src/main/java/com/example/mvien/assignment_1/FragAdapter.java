@@ -9,33 +9,32 @@ public class FragAdapter extends FragmentPagerAdapter {
 
     private Context mContext;
     private Bundle b;
-
-
     // constructor
-    public FragAdapter(Context context, FragmentManager fm, Bundle bund) {
+    public FragAdapter(Context context, FragmentManager fm, Bundle bund ) {
         super(fm);
         mContext = context;
         if(bund != null)
         {
-            b = bund;
+            this.b = bund;
         }
     }
 
     // grabs the fragment for each tab
     @Override
     public Fragment getItem(int position) {
-        if(position ==0) {
+        if(position ==1) {
             Profile p =  new Profile();
             p.setArguments(this.b);
             return p;
         }
-        else if (position == 1){
-            return new Matches();
+        else if (position == 0){
+            Matches m = new Matches();
+            m.setArguments(this.b);
+            return m;
         }
         else {
             return new Settings();
         }
-
     }
 
     // sets the number of tabs
@@ -50,14 +49,13 @@ public class FragAdapter extends FragmentPagerAdapter {
         // title based on item position
         switch (position) {
             case 0:
-                return mContext.getString(R.string.profile);
-            case 1:
                 return mContext.getString(R.string.matches);
+            case 1:
+                return mContext.getString(R.string.profile);
             case 2:
                 return mContext.getString(R.string.settings);
             default:
                 return null;
         }
     }
-
 }

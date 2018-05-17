@@ -2,16 +2,29 @@ package com.example.mvien.assignment_1;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
 import android.widget.DatePicker;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     private Button secondActivityBtn;
@@ -22,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText ageText;
     private EditText occupation;
     private EditText description;
-
+    public FirebaseAuth mAuth;
     //dialog listener
     private DatePickerDialog.OnDateSetListener myDateListener = new
             DatePickerDialog.OnDateSetListener() {
@@ -48,6 +61,25 @@ public class MainActivity extends AppCompatActivity {
         ageText.setFocusable(false);
         occupation = findViewById(R.id.occupation);
         description = findViewById(R.id.description);
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.signInAnonymously()
+                .addOnCompleteListener(this, (OnCompleteListener<AuthResult>) task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d("Signin", "signInAnonymously:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        //updateUI(user);
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w("Signin", "signInAnonymously:failure", task.getException());
+                        Toast.makeText(MainActivity.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
+                        //updateUI(null);
+                    }
+
+                    // ...
+                });
+
     }
 
     @SuppressWarnings("deprecation")

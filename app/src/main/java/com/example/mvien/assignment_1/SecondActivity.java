@@ -4,32 +4,34 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import com.example.mvien.assignment_1.models.MatchesModel;
+import com.example.mvien.assignment_1.viewmodels.MatchesViewModel;
+import java.util.ArrayList;
 
 
-public class SecondActivity extends AppCompatActivity {
-
+public class SecondActivity extends AppCompatActivity implements Matches.OnListFragmentInteractionListener {
+private MatchesViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // set the content of the activity
         setContentView(R.layout.activity_second);
-
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
-
-        // find the view pager that will allow the user to swipe between fragments
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-
-        // create an adapter that knows which fragment should be shown on each page
-        FragAdapter adapter = new FragAdapter(this, getSupportFragmentManager(), b);
-
-        // set the adapter
-        viewPager.setAdapter(adapter);
-
-        // add viewpager
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        viewModel = new MatchesViewModel();
+        viewModel.getMatchedItems(
+                (ArrayList<MatchesModel> matches) -> {
+                    //place the parcelable in the bundle
+                    b.putParcelableArrayList("matches", matches);
+                    ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+                    FragAdapter adapter = new FragAdapter(this, getSupportFragmentManager(), b);
+                    // set the adapter
+                    viewPager.setAdapter(adapter);
+                    // add viewpager
+                    TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+                    tabLayout.setupWithViewPager(viewPager);
+                }
+        );
     }
 
     //erases form on back button press
@@ -41,4 +43,20 @@ public class SecondActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    //clears the view model on pause
+    @Override
+    protected void onPause() {
+        viewModel.clear();
+        super.onPause();
+    }
+
+    //listener
+    @Override
+    public void onListFragmentInteraction(MatchesModel person) {
+        //updates person in database
+        viewModel.updateMatchesItem(person);
+    }
+
+
 }

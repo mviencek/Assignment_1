@@ -36,7 +36,7 @@
                 android:layout_marginLeft="@dimen/md_keylines"
                 tools:text="@string/person_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textColor="@color/dark_grey" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/card_text"
