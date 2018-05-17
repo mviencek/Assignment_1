@@ -20,7 +20,7 @@ import org.hamcrest.Matchers;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import android.support.test.espresso.intent.Intents;
-
+import static org.junit.Assert.assertEquals;
 import java.util.Calendar;
 
 import static android.support.test.espresso.intent.Intents.intended;
@@ -172,6 +172,17 @@ public class main_activity_test {
         onView(withId(R.id.emailEditText)).check(matches(withText("")));
         onView(withId(R.id.ageText)).check(matches(withText("")));
         onView(withId(R.id.nameEditText)).check(matches(withText("")));
+    }
+
+    @Test
+    public void testConstants() {
+        assertEquals("name", Constants.KEY_NAME);
+        assertEquals("age", Constants.KEY_AGE);
+        assertEquals("username", Constants.KEY_USERNAME);
+        assertEquals("email", Constants.KEY_EMAIL);
+        assertEquals("birthday", Constants.KEY_BIRTHDAY);
+        assertEquals("occupation", Constants.KEY_OCCUPATION);
+        assertEquals("description", Constants.KEY_DESCRIPTION);
     }
 
 

@@ -21,7 +21,6 @@ import com.google.firebase.database.DataSnapshot;
                         ArrayList<MatchesModel> matches = new ArrayList<>();
                         for (DataSnapshot matchesSnapshot : dataSnapshot.getChildren()) {
                             MatchesModel person = matchesSnapshot.getValue(MatchesModel.class);
-                            assert person != null;
                             person.uid = matchesSnapshot.getKey();
                             matches.add(person);
                         }
