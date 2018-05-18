@@ -10,7 +10,7 @@ public class MatchesModel implements Parcelable {
         public String imageUrl;
         public boolean liked;
 
-        //empty constructor
+        //empty constructor parcelable is smart enough
         public MatchesModel() {
         }
 
