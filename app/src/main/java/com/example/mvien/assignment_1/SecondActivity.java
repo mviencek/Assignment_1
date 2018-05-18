@@ -1,4 +1,5 @@
 package com.example.mvien.assignment_1;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,25 @@ import java.util.ArrayList;
 
 
 public class SecondActivity extends AppCompatActivity implements Matches.OnListFragmentInteractionListener {
-private MatchesViewModel viewModel;
+    private MatchesViewModel viewModel;
+    private ProgressDialog mProgressDialog;
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.setMessage("Loading...");
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +38,7 @@ private MatchesViewModel viewModel;
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
         viewModel = new MatchesViewModel();
+        showProgressDialog();
         viewModel.getMatchedItems(
                 (ArrayList<MatchesModel> matches) -> {
                     //place the parcelable in the bundle
@@ -30,8 +50,10 @@ private MatchesViewModel viewModel;
                     // add viewpager
                     TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
                     tabLayout.setupWithViewPager(viewPager);
+                    hideProgressDialog();
                 }
         );
+
     }
 
     //erases form on back button press
