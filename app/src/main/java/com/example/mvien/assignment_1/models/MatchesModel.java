@@ -14,18 +14,12 @@ public class MatchesModel implements Parcelable {
         public MatchesModel() {
         }
 
-        //constructor
-        public MatchesModel(Parcel in) {
-            name = in.readString();
-            imageUrl = in.readString();
-            liked = in.readByte() != 0;
-        }
 
         public static final Creator<MatchesModel> CREATOR = new Creator<MatchesModel>() {
             @Override
             public MatchesModel createFromParcel(Parcel in) {
 
-                return new MatchesModel(in);
+                return new MatchesModel();
             }
 
             @Override
