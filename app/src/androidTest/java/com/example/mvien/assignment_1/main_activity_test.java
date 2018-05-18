@@ -135,7 +135,7 @@ public class main_activity_test {
 
     @Test
     //loads intents and travels to second activity
-    public void canGoToSecondActivity() {
+    public void canGoToSecondActivity() throws InterruptedException{
         onView(withId(R.id.nameEditText))
                 .perform(typeText("Mikal Viencek")).perform(ViewActions.closeSoftKeyboard());
 
@@ -163,7 +163,7 @@ public class main_activity_test {
         intended(hasExtra(Constants.KEY_OCCUPATION, "Chef"));
         intended(hasExtra(Constants.KEY_DESCRIPTION, "Inputting test information!"));
         Intents.release();
-
+        Thread.sleep(6000);
         //now go back and make sure the form is empty
         Espresso.pressBack();
         onView(withId(R.id.ageEditText)).check(matches(withText("")));
