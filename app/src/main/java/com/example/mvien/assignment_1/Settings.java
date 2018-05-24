@@ -86,18 +86,21 @@ public class Settings extends Fragment {
                 }
                 else{
                     editMinAge.setError("Must set a minimum age!");
+                    return;
                 }
                 if(editMaxAge.getText().toString().trim().length() != 0) {
                     user.setMaxAge(Integer.parseInt(editMaxAge.getText().toString()));
                 }
                 else{
                     editMaxAge.setError("Must set maximum age!");
+                    return;
                 }
                 if(editMaxDistance.getText().toString().trim().length() != 0) {
                     user.setDistance(Integer.parseInt(editMaxDistance.getText().toString()));
                 }
                 else{
                     editMaxDistance.setError("Must set maximum distance!");
+                    return;
                 }
 
                 user.setGender(String.valueOf(editGender.getSelectedItem()));
@@ -108,6 +111,7 @@ public class Settings extends Fragment {
                 }
                 else{
                     setTime.setError("Must select a reminder time!");
+                    return;
                 }
                 new InsertUserTask(getActivity(), user).execute();
             }
