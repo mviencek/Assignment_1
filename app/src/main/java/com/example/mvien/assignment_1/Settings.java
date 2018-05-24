@@ -101,7 +101,7 @@ public class Settings extends Fragment {
                 }
 
                 user.setGender(String.valueOf(editGender.getSelectedItem()));
-                user.setEmail(email.toString());
+                user.setEmail(email);
                 user.setPrivate(editPrivate.isChecked());
                 if(setTime.getText().toString().trim().length() != 0) {
                     user.setReminder(setTime.getText().toString());
@@ -171,10 +171,11 @@ public class Settings extends Fragment {
 
         private WeakReference<Activity> weakActivity;
         private Settings settings;
+        private WeakReference<Settings> weakFragment;
 
         public GetSettingsTask(FragmentActivity activity, Settings s) {
-            weakActivity = new WeakReference<>(activity);
-            settings = s;
+            this.weakActivity = new WeakReference<Activity>(activity);
+            this.weakFragment = new WeakReference<Settings>(s);
         }
 
         @Override
@@ -194,7 +195,8 @@ public class Settings extends Fragment {
 
         @Override
         protected void onPostExecute(UserSettings user) {
-            if(user == null) {
+            this.settings = weakFragment.get();
+            if(user == null || this.settings == null) {
                 return;
             }
             settings.editMinAge.setText(Integer.toString(user.getMinAge()));
