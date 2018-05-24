@@ -173,7 +173,7 @@ public class Settings extends Fragment {
         private Settings settings;
         private WeakReference<Settings> weakFragment;
 
-        public GetSettingsTask(FragmentActivity activity, Settings s) {
+        public GetSettingsTask(Activity activity, Settings s) {
             this.weakActivity = new WeakReference<Activity>(activity);
             this.weakFragment = new WeakReference<Settings>(s);
         }
