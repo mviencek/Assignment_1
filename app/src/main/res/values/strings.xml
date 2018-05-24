@@ -34,4 +34,22 @@
     <string name="detail_desc">
     </string>
     <string name="detail_location"></string>
+    <string name="min_age">Min. Age:</string>
+    <string name="max_age">Max. Age:</string>
+    <string name="enter_min_age">Enter Min. Age</string>
+    <string name="enter_max_age">Enter Max. Age</string>
+    <string name="max_distance">Max. Distance:</string>
+    <string name="enter_max_distance">Enter Max. Distance</string>
+    <string name="gender">Gender:</string>
+    <string name="enter_gender">Enter Gender</string>
+    <string name="private_account">Private Account:</string>
+    <string name="reminder_time">Reminder Time:</string>
+    <string name="update">Update</string>
+    <string name="set_time">Set Time</string>
+
+
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

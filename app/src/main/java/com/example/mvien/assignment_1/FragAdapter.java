@@ -33,7 +33,9 @@ public class FragAdapter extends FragmentPagerAdapter {
             return m;
         }
         else {
-            return new Settings();
+            Settings s = new Settings();
+            s.setArguments(this.b);
+            return s;
         }
     }
 

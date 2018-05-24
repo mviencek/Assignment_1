@@ -35,12 +35,12 @@ public class SecondActivity extends AppCompatActivity implements Matches.OnListF
         super.onCreate(savedInstanceState);
         // set the content of the activity
         setContentView(R.layout.activity_second);
-        Intent intent = getIntent();
-        Bundle b = intent.getExtras();
         viewModel = new MatchesViewModel();
         showProgressDialog();
         viewModel.getMatchedItems(
                 (ArrayList<MatchesModel> matches) -> {
+                    Intent intent = getIntent();
+                    Bundle b = intent.getExtras();
                     //place the parcelable in the bundle
                     b.putParcelableArrayList("matches", matches);
                     ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
