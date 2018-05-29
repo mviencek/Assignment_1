@@ -57,6 +57,7 @@ public class Matches extends Fragment {
         public ImageView picture;
         public TextView name;
         public TextView id;
+        public TextView card_text;
         public ImageButton btn;
         public MatchesModel person;
         public ViewHolder(LayoutInflater inflater, ViewGroup parent, final Context myContext) {
@@ -64,22 +65,24 @@ public class Matches extends Fragment {
             picture = (ImageView) itemView.findViewById(R.id.card_image);
             name = (TextView) itemView.findViewById(R.id.card_title);
             btn = (ImageButton)itemView.findViewById(R.id.favorite_button);
+            card_text = (TextView)itemView.findViewById(R.id.card_text);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mListener != null) {
                         //reverse the value
-                        person.liked = !person.liked;
-                        //toast you like them
-                        if(person.liked){
-                            Toast.makeText(myContext, "You like " + name.getText() + "!", Toast.LENGTH_LONG).show();
+                        if(person.name.trim() != "No Matches Found!") {
+                            person.liked = !person.liked;
+                            //toast you like them
+                            if (person.liked) {
+                                Toast.makeText(myContext, "You like " + name.getText() + "!", Toast.LENGTH_LONG).show();
+                            }
+                            //toast you dont like them
+                            else {
+                                Toast.makeText(myContext, "You no longer like " + name.getText() + "!", Toast.LENGTH_LONG).show();
+                            }
+                            mListener.onListFragmentInteraction(person);
                         }
-                        //toast you dont like them
-                        else
-                        {
-                            Toast.makeText(myContext, "You no longer like " + name.getText() + "!", Toast.LENGTH_LONG).show();
-                        }
-                        mListener.onListFragmentInteraction(person);
                     }
                 }
             });
@@ -107,6 +110,16 @@ public class Matches extends Fragment {
                 }
 
             }
+            //set up dummy matchesmodel if no matches are found
+            if(temp.size() == 0) {
+                MatchesModel none = new MatchesModel();
+                none.name = "No Matches Found!";
+                none.imageUrl = "";
+                none.liked  = false;
+                none.lat = "0.0";
+                none.longitude = "0.0";
+                temp.add(none);
+            }
             people = temp;
             LENGTH = people.size();
         }
@@ -117,11 +130,16 @@ public class Matches extends Fragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-
                 holder.person = people.get(position);
                 String url = people.get(position).imageUrl;
-                Picasso.get().load(url).into(holder.picture);
+                if(url.trim().length() !=0) {
+                    Picasso.get().load(url).into(holder.picture);
+                }
                 holder.name.setText(people.get(position).name);
+                if(people.get(position).name.trim() == "No Matches Found!")
+                {
+                    holder.card_text.setText(people.get(position).name);
+                }
                 Boolean liked = people.get(position).liked;
                 if (liked) {
                     holder.btn.setColorFilter(RED);
