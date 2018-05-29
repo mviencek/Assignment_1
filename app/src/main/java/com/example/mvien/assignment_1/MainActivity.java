@@ -1,5 +1,8 @@
 package com.example.mvien.assignment_1;
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.util.Log;
@@ -66,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 });
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 10);
+        }
 
     }
 

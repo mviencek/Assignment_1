@@ -25,7 +25,7 @@ import java.util.Calendar;
 import java.util.List;
 
 
-public class Settings extends Fragment {
+public class SettingsFragment extends Fragment {
 
     TextView minAge;
     EditText editMinAge;
@@ -43,7 +43,7 @@ public class Settings extends Fragment {
     static EditText setTime;
     static String email;
 
-    public Settings() {
+    public SettingsFragment() {
         // Required empty public constructor
     }
 
@@ -171,15 +171,15 @@ public class Settings extends Fragment {
         }
     }
 
-    private static class GetSettingsTask extends AsyncTask<Void, Void, UserSettings> {
+     static class GetSettingsTask extends AsyncTask<Void, Void, UserSettings> {
 
         private WeakReference<Activity> weakActivity;
-        private Settings settings;
-        private WeakReference<Settings> weakFragment;
+        private SettingsFragment settings;
+        private WeakReference<SettingsFragment> weakFragment;
 
-        public GetSettingsTask(Activity activity, Settings s) {
+        public GetSettingsTask(Activity activity, SettingsFragment s) {
             this.weakActivity = new WeakReference<Activity>(activity);
-            this.weakFragment = new WeakReference<Settings>(s);
+            this.weakFragment = new WeakReference<SettingsFragment>(s);
         }
 
         @Override

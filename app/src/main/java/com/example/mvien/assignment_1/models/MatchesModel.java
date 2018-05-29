@@ -9,6 +9,8 @@ public class MatchesModel implements Parcelable {
         public String name;
         public String imageUrl;
         public boolean liked;
+        public String lat;
+        public String longitude;
 
         //empty constructor parcelable is smart enough
         public MatchesModel() {
@@ -37,6 +39,8 @@ public class MatchesModel implements Parcelable {
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(lat);
+            dest.writeString(longitude);
             dest.writeString(imageUrl);
             dest.writeString(name);
             dest.writeByte((byte) (liked ? 1 : 0));

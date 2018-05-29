@@ -1,5 +1,6 @@
 package com.example.mvien.assignment_1;
 import android.content.Context;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -33,7 +34,7 @@ public class FragAdapter extends FragmentPagerAdapter {
             return m;
         }
         else {
-            Settings s = new Settings();
+            SettingsFragment s = new SettingsFragment();
             s.setArguments(this.b);
             return s;
         }

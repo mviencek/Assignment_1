@@ -1,5 +1,6 @@
 package com.example.mvien.assignment_1;
 import android.content.Context;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,6 +22,7 @@ import static android.graphics.Color.*;
 public class Matches extends Fragment {
     private ArrayList<MatchesModel> people = new ArrayList<MatchesModel>();
     private OnListFragmentInteractionListener mListener;
+    static Location myLocation = new Location("");
 
     public Matches() {
         // Required empty public constructor
@@ -31,6 +33,14 @@ public class Matches extends Fragment {
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(
                 R.layout.recycler_view, container, false);
         Bundle b = this.getArguments();
+      //  myLocation.setLatitude(47.6062);
+       // myLocation.setLongitude(122.3321);
+        if(b.containsKey("myLat")){
+            myLocation.setLatitude(b.getDouble("myLat"));
+        }
+        if (b.containsKey("myLong")){
+            myLocation.setLongitude(b.getDouble("myLong"));
+        }
         if (b.containsKey("matches")){
             this.people = b.getParcelableArrayList("matches");
 
@@ -82,14 +92,24 @@ public class Matches extends Fragment {
      */
     public class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
         // Set numbers of List in RecyclerView.
-        private int LENGTH = people.size();
+        private int LENGTH;
 
-        //empty constructor
+        //constructor
         public ContentAdapter(Context context) {
-            // Log.i("mymatches name at zero index in contentadapter", " " + people.get(0).name.toString());
+            ArrayList<MatchesModel> temp = new ArrayList<MatchesModel>();
+            for (MatchesModel m : people) {
+                Location match = new Location("");
+                match.setLongitude(Double.parseDouble(m.longitude));
+                match.setLatitude(Double.parseDouble(m.lat));
+                float distance = myLocation.distanceTo(match);
+                if (distance < 16093.4) {
+                    temp.add(m);
+                }
+
+            }
+            people = temp;
+            LENGTH = people.size();
         }
-
-
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new ViewHolder(LayoutInflater.from(parent.getContext()), parent, parent.getContext());
@@ -97,17 +117,17 @@ public class Matches extends Fragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            holder.person = people.get(position);
-            String url = people.get(position).imageUrl;
-            Picasso.get().load(url).into(holder.picture);
-            holder.name.setText(people.get(position).name);
-            Boolean liked = people.get(position).liked;
-            if(liked){
+
+                holder.person = people.get(position);
+                String url = people.get(position).imageUrl;
+                Picasso.get().load(url).into(holder.picture);
+                holder.name.setText(people.get(position).name);
+                Boolean liked = people.get(position).liked;
+                if (liked) {
                     holder.btn.setColorFilter(RED);
-            }
-            else{
-                holder.btn.setColorFilter(LTGRAY);
-            }
+                } else {
+                    holder.btn.setColorFilter(LTGRAY);
+                }
         }
 
         @Override
