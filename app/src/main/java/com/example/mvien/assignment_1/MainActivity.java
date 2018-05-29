@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
     {
         boolean valid = false;
         if(email.trim().length() == 0) {
-            emailEditText.setError( "Occupation is required!" );
+            emailEditText.setError( "Email is required!" );
         }
         else{
             valid = true;

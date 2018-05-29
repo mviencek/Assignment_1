@@ -128,6 +128,8 @@ public class Matches extends Fragment {
                 } else {
                     holder.btn.setColorFilter(LTGRAY);
                 }
+
+
         }
 
         @Override

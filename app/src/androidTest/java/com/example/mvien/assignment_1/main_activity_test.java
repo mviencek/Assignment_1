@@ -9,6 +9,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -171,6 +172,35 @@ public class main_activity_test {
         onView(withId(R.id.emailEditText)).check(matches(withText("")));
         onView(withId(R.id.ageText)).check(matches(withText("")));
         onView(withId(R.id.nameEditText)).check(matches(withText("")));
+    }
+
+    @Test
+    public void checkIfElses()
+    {
+        int year = 2000;
+        int month = 2;
+        int day = 1;
+        onView(withId(R.id.button1)).perform(click());
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(year, month + 1, day)).check(matches(not(withText("mike@test.com"))));
+        onView(withId(android.R.id.button1)).perform(click());
+        onView(withId(R.id.secondActivityBtn)).check(matches(isEnabled()));
+        onView(withId(R.id.nameEditText)).perform(replaceText("")).perform(ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.secondActivityBtn)).perform(click());
+
+        onView(withId(R.id.nameEditText)).perform(typeText("Mike")).perform(ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.secondActivityBtn)).perform(click());
+
+        onView(withId(R.id.usernameEditText)).perform(typeText("mikeTest")).perform(ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.secondActivityBtn)).perform(click());
+
+
+        onView(withId(R.id.emailEditText)).perform(typeText("mike@test.com")).perform(ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.secondActivityBtn)).perform(click());
+
+
+        onView(withId(R.id.occupation)).perform(typeText("Chef")).perform(ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.secondActivityBtn)).perform(click());
+
     }
 
 

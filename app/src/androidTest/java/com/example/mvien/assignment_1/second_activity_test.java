@@ -153,11 +153,15 @@ public class second_activity_test {
         onView(withText(R.string.settings))
                 .perform(click());
         onView(withId(R.id.editMinAge)).perform(replaceText("")).perform(ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.updateSettings)).perform(click());
         onView(withId(R.id.editMinAge)).perform(typeText("24")).perform(ViewActions.closeSoftKeyboard());
         onView(withId(R.id.editMaxAge)).perform(replaceText("")).perform(ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.updateSettings)).perform(click());
         onView(withId(R.id.editMaxAge)).perform(typeText("44")).perform(ViewActions.closeSoftKeyboard());
         onView(withId(R.id.editMaxDist)).perform(replaceText("")).perform(ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.updateSettings)).perform(click());
         onView(withId(R.id.editMaxDist)).perform(typeText("10")).perform(ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.updateSettings)).perform(click());
         onView(withId(R.id.editTime)).perform(click());
         onView(withId(android.R.id.button1)).perform(click());
         onView(withId(R.id.editGender)).perform(click());
