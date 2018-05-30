@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText ageText;
     private EditText occupation;
     private EditText description;
-    public FirebaseAuth mAuth;
     //dialog listener
     private DatePickerDialog.OnDateSetListener myDateListener = new
             DatePickerDialog.OnDateSetListener() {
@@ -55,20 +54,6 @@ public class MainActivity extends AppCompatActivity {
         ageText.setFocusable(false);
         occupation = findViewById(R.id.occupation);
         description = findViewById(R.id.description);
-        mAuth = FirebaseAuth.getInstance();
-        mAuth.signInAnonymously()
-                .addOnCompleteListener(this, (OnCompleteListener<AuthResult>) task -> {
-                    if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d("Signin", "signInAnonymously:success");
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("Signin", "signInAnonymously:failure", task.getException());
-                        Toast.makeText(MainActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                });
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 10);
         }
