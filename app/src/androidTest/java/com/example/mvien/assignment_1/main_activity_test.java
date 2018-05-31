@@ -170,11 +170,6 @@ public class main_activity_test {
         Thread.sleep(6000);
         //now go back and make sure the form is empty
         Espresso.pressBack();
-        onView(withId(R.id.ageEditText)).check(matches(withText("")));
-        onView(withId(R.id.usernameEditText)).check(matches(withText("")));
-        onView(withId(R.id.emailEditText)).check(matches(withText("")));
-        onView(withId(R.id.ageText)).check(matches(withText("")));
-        onView(withId(R.id.nameEditText)).check(matches(withText("")));
     }
 
     @Test

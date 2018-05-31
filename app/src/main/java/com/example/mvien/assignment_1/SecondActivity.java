@@ -77,7 +77,7 @@ public class SecondActivity extends AppCompatActivity implements Matches.OnListF
     }
 
     private boolean isLocationEnabled() {
-        return locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 
     private void showAlert() {
@@ -98,8 +98,8 @@ public class SecondActivity extends AppCompatActivity implements Matches.OnListF
             return;
         }
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 60000, 1000, locationListenerNetwork);
-            myLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 1000, locationListenerNetwork);
+            myLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             showProgressDialog();
             viewModel.getMatchedItems(
                     (ArrayList<MatchesModel> matches) -> {
