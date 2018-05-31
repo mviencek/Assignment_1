@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
-public class FragAdapter extends FragmentPagerAdapter {
+public class FragAdapter extends FragmentStatePagerAdapter {
 
     private Context mContext;
     private Bundle b;
@@ -18,6 +19,10 @@ public class FragAdapter extends FragmentPagerAdapter {
         {
             this.b = bund;
         }
+    }
+    public void setData(Bundle bundle)
+    {
+        this.b = bundle;
     }
 
     // grabs the fragment for each tab
