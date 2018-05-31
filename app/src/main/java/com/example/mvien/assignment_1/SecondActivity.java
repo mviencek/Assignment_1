@@ -126,7 +126,6 @@ public class SecondActivity extends AppCompatActivity implements Matches.OnListF
         public void onLocationChanged(Location location) {
             myLocation = location;
             viewModel.clear();
-            showProgressDialog();
             Intent intent = getIntent();
             Bundle b = intent.getExtras();
             viewModel.getMatchedItems(
@@ -147,7 +146,6 @@ public class SecondActivity extends AppCompatActivity implements Matches.OnListF
                         // set the adapter
                         viewPager.setAdapter(adapter);
                         tabLayout.setupWithViewPager(viewPager);
-                        hideProgressDialog();
                     }
 
             );
