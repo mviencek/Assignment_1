@@ -85,7 +85,7 @@ public class main_activity_test {
     public void checkBadBirthDate(){
         onView(withId(R.id.nameEditText)).perform(typeText("Mike")).perform(ViewActions.closeSoftKeyboard());
         int year = 2000;
-        int month = 4;
+        int month = 5;
         int day = 30;
         onView(withId(R.id.button1)).perform(click());
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(year, month + 1, day)).check(matches(not(withText("mike@test.com"))));
