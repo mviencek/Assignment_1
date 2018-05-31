@@ -106,6 +106,7 @@ public class Matches extends Fragment {
                 match.setLatitude(Double.parseDouble(m.lat));
                 float distance = myLocation.distanceTo(match);
                 if (distance < 16093.4) {
+               // if (distance < 48093.4) { // i dont live in seattle increasing radius for testing on my phone
                     temp.add(m);
                 }
 
@@ -113,7 +114,7 @@ public class Matches extends Fragment {
             //set up dummy matchesmodel if no matches are found
             if(temp.size() == 0) {
                 MatchesModel none = new MatchesModel();
-                none.name = "No Matches Found!";
+                none.name = getString(R.string.no_match);
                 none.imageUrl = "";
                 none.liked  = false;
                 none.lat = "0.0";
@@ -136,7 +137,7 @@ public class Matches extends Fragment {
                     Picasso.get().load(url).into(holder.picture);
                 }
                 holder.name.setText(people.get(position).name);
-                if(people.get(position).name.trim() == "No Matches Found!")
+                if(people.get(position).name.trim() == getString(R.string.no_match));
                 {
                     holder.card_text.setText(people.get(position).name);
                 }
