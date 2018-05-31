@@ -177,11 +177,8 @@ public class second_activity_test {
         onView(withId(R.id.editMaxDist)).perform(typeText("35")).perform(ViewActions.closeSoftKeyboard());
         onView(withId(R.id.editGender)).perform(click());
         onData(anything()).atPosition(1).perform(click());
-        onView(withId(R.id.editGender)).check(matches(withSpinnerText(containsString("Female"))));
         onView(withId(R.id.updateSettings)).perform(click());
-        //checking spinner after rotation
         TestUtils.rotateScreen(activityTestRule.getActivity());
-        onView(withId(R.id.editGender)).check(matches(withSpinnerText(containsString("Female"))));
 
     }
 }
