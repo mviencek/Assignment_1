@@ -46,6 +46,7 @@
     <string name="reminder_time">Reminder Time:</string>
     <string name="update">Update</string>
     <string name="set_time">Set Time</string>
+    <string name="no_match">No Matches Found!</string>
 
 
     <string-array name="gender_array">
