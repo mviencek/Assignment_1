@@ -1,4 +1,5 @@
 package com.example.mvien.assignment_1;
+import android.Manifest;
 import android.content.Intent;
 import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.action.ViewActions;
@@ -46,6 +47,7 @@ public class second_activity_test {
     };
 
     @Rule public GrantPermissionRule permissionRule = GrantPermissionRule.grant(android.Manifest.permission.ACCESS_FINE_LOCATION);
+    @Rule public GrantPermissionRule permissionRuleCourse = GrantPermissionRule.grant(Manifest.permission.ACCESS_COARSE_LOCATION);
 
 
     @Test

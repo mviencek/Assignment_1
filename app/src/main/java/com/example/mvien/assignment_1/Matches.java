@@ -106,6 +106,7 @@ public class Matches extends Fragment {
                 match.setLatitude(Double.parseDouble(m.lat));
                 float distance = myLocation.distanceTo(match);
                 if (distance < 16093.4) {
+               //if (distance < 48093.4) { //expanding radius for testing to 30 miles because i dont live in seattle
                     temp.add(m);
                 }
 

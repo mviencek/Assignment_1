@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Settings">
+    tools:context=".SettingsFragment">
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="15dp">
 
@@ -13,7 +13,8 @@
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:text="@string/min_age"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:layout_marginLeft="15dp"/>
             <EditText
                 android:layout_marginTop="50dp"
                 android:id="@+id/editMinAge"
@@ -21,14 +22,17 @@
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:hint="@string/enter_min_age"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:layout_marginRight="15dp"/>
             <TextView
                 android:id="@+id/maxAge"
                 android:layout_below="@id/minAge"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:textSize="18sp"
-                android:text="@string/max_age"/>
+                android:text="@string/max_age"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"/>
             <EditText
                 android:id="@+id/editMaxAge"
                 android:layout_below="@id/editMinAge"
@@ -36,14 +40,18 @@
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:hint="@string/enter_max_age"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"/>
             <TextView
                 android:id="@+id/maxDistance"
                 android:layout_below="@id/maxAge"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:textSize="18sp"
-                android:text="@string/max_distance"/>
+                android:text="@string/max_distance"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"/>
             <EditText
                 android:id="@+id/editMaxDist"
                 android:layout_width="200dp"
@@ -51,14 +59,18 @@
                 android:layout_below="@id/editMaxAge"
                 android:layout_toEndOf="@+id/maxDistance"
                 android:hint="@string/enter_max_distance"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"/>
             <TextView
                 android:id="@+id/gender"
                 android:layout_below="@+id/maxDistance"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:textSize="18sp"
-                android:text="@string/gender"/>
+                android:text="@string/gender"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"/>
             <Spinner
                 android:layout_width="200dp"
                 android:layout_height="50dp"
@@ -68,6 +80,8 @@
                 android:layout_toEndOf="@id/gender"
                 android:hint="@string/enter_gender"
                 android:inputType="text"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
                 />
             <TextView
                 android:id="@+id/is_private"
@@ -75,35 +89,45 @@
                 android:layout_height="50dp"
                 android:layout_below="@id/gender"
                 android:textSize="18sp"
-                android:text="@string/private_account"/>
+                android:text="@string/private_account"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"/>
             <Switch
                 android:id="@+id/switch_private"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_below="@id/editGender"
-                android:layout_toEndOf="@id/is_private"/>
+                android:layout_toEndOf="@id/is_private"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"/>
             <TextView
                 android:id="@+id/time"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:text="@string/reminder_time"
                 android:textSize="18sp"
-                android:layout_below="@id/is_private"/>
+                android:layout_below="@id/is_private"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"/>
             <EditText
                 android:id="@+id/setTime"
                 android:layout_toEndOf="@+id/time"
                 android:layout_below="@+id/switch_private"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"/>
             <Button
                 android:id="@+id/editTime"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:layout_toEndOf="@+id/setTime"
                 android:layout_below="@+id/switch_private"
                 android:text="@string/set_time"
-                android:backgroundTint="@color/colorAccent"/>
+                android:layout_marginRight="15dp"
+                android:background="@drawable/shadow_button_layer_list"
+                android:layout_marginTop="10dp"/>
             <Button
                 android:layout_marginTop="25dp"
                 android:id="@+id/updateSettings"
@@ -112,7 +136,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="@string/update"
-                android:backgroundTint="@color/colorAccent"/>
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/shadow_button_layer_list"
+                />
 
         </RelativeLayout>
 

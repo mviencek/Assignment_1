@@ -98,24 +98,23 @@ public class SecondActivity extends AppCompatActivity implements Matches.OnListF
             return;
         }
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 1000, locationListenerNetwork);
             myLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            showProgressDialog();
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 1000, locationListenerNetwork);
+            Intent intent = getIntent();
+            Bundle b = intent.getExtras();
             viewModel.getMatchedItems(
                     (ArrayList<MatchesModel> matches) -> {
-                        Intent intent = getIntent();
-                        Bundle b = intent.getExtras();
                         //place the parcelable in the bundle
                         b.putParcelableArrayList("matches", matches);
                         if(myLocation != null) {
                             b.putDouble("myLat", myLocation.getLatitude());
                             b.putDouble("myLong", myLocation.getLongitude());
                         }
-                        adapter = new FragAdapter(this, getSupportFragmentManager(), b);
+                        adapter = new FragAdapter(SecondActivity.this, getSupportFragmentManager(), b);
+
                         // set the adapter
                         viewPager.setAdapter(adapter);
                         tabLayout.setupWithViewPager(viewPager);
-                        hideProgressDialog();
                     }
 
             );

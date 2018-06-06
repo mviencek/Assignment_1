@@ -29,7 +29,8 @@
                 android:gravity="center_horizontal"
                 android:text="@string/welcome"
                 android:textStyle="bold"
-                android:textColor="#FF4081"/>
+                android:textColor="#FF4081"
+                />
 
             <EditText
                 android:id="@+id/nameEditText"
@@ -37,28 +38,36 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="@string/enter_name"
-                android:inputType="text" />
+                android:inputType="text"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
 
             <EditText
                 android:id="@+id/emailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
 
             <EditText
                 android:id="@+id/usernameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_username"
-                android:inputType="text" />
+                android:inputType="text"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
 
             <EditText
                 android:id="@+id/occupation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/occupation"
-                android:inputType="text" />
+                android:inputType="text"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
 
             <EditText
                 android:id="@+id/description"
@@ -70,14 +79,18 @@
                 android:scrollbars="vertical"
                 android:lines="3"
                 android:scrollHorizontally="false"
-                android:hint="@string/description" />
+                android:hint="@string/description"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
 
             <EditText
                 android:id="@+id/ageText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_age"
-                android:inputType="text" />
+                android:inputType="text"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
@@ -92,18 +105,22 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_bd"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="6dp"/>
 
                 <Button
                     android:id="@+id/button1"
-                    android:layout_width="100dp"
+                    android:layout_width="80dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="6dp"
                     android:gravity="center_horizontal"
-                    android:backgroundTint="@color/colorAccent"
+
                     android:layout_marginStart="20dp"
                     android:onClick="setDate"
-                    android:text="@string/date_button_set" />
+                    android:text="@string/date_button_set"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/shadow_button_layer_list"/>
 
             </LinearLayout>
 
@@ -116,26 +133,25 @@
                 tools:context=".MainActivity">
 
                 <Button
+                    android:layout_marginTop="5dp"
                     android:id="@+id/secondActivityBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:onClick="goToSecondActivity"
-                    android:backgroundTint="@color/colorAccent"
-                    android:text="@string/go_to_second_activity" />
+                    android:text="@string/go_to_second_activity"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/shadow_button_layer_list"/>
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/hello_world"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/greetings" />
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/author" />
+                android:hint="@string/author"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"/>
         </LinearLayout>
     </ScrollView>
 </android.support.design.widget.CoordinatorLayout>
