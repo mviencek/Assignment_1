@@ -70,29 +70,13 @@ public class SecondActivity extends AppCompatActivity implements Matches.OnListF
     }
 
     private boolean checkLocation() {
-        if (!isLocationEnabled()) {
-            showAlert();
-        }
         return isLocationEnabled();
     }
 
     private boolean isLocationEnabled() {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
-
-    private void showAlert() {
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Enable Location Services")
-                .setMessage("Turn on location")
-                .setPositiveButton("Approve", (paramDialogInterface, paramInt) -> {
-                    Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                    startActivity(myIntent);
-                })
-                .setNegativeButton("Cancel", (paramDialogInterface, paramInt) -> {
-                });
-        dialog.show();
-    }
-
+    
     public void networkUpdates() {
         if (!checkLocation()) {
             return;
