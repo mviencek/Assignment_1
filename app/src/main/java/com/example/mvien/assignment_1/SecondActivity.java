@@ -1,7 +1,4 @@
 package com.example.mvien.assignment_1;
-import android.Manifest;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,23 +6,16 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.widget.ArrayAdapter;
 
-import com.example.mvien.assignment_1.entity.UserSettings;
 import com.example.mvien.assignment_1.models.MatchesModel;
 import com.example.mvien.assignment_1.viewmodels.MatchesViewModel;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class SecondActivity extends AppCompatActivity implements Matches.OnListFragmentInteractionListener {
@@ -37,21 +27,6 @@ public class SecondActivity extends AppCompatActivity implements Matches.OnListF
     private TabLayout tabLayout;
     private FragAdapter adapter;
 
-    public void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setCancelable(false);
-            mProgressDialog.setMessage("Loading...");
-        }
-
-        mProgressDialog.show();
-    }
-
-    public void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +58,6 @@ public class SecondActivity extends AppCompatActivity implements Matches.OnListF
         }
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             myLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            showProgressDialog();
             Intent intent = getIntent();
             Bundle b = intent.getExtras();
             viewModel.getMatchedItems(
@@ -104,7 +78,6 @@ public class SecondActivity extends AppCompatActivity implements Matches.OnListF
                         // set the adapter
                         viewPager.setAdapter(adapter);
                         tabLayout.setupWithViewPager(viewPager);
-                        hideProgressDialog();
                     }
 
             );
