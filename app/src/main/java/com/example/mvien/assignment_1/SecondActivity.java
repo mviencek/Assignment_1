@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 public class SecondActivity extends AppCompatActivity implements Matches.OnListFragmentInteractionListener {
     private MatchesViewModel viewModel;
-    private ProgressDialog mProgressDialog;
     private LocationManager locationManager;
     private Location myLocation;
     private ViewPager viewPager;
