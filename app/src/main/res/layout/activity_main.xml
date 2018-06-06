@@ -111,12 +111,9 @@
 
                 <Button
                     android:id="@+id/button1"
-                    android:layout_width="80dp"
+                    android:layout_width="75dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="6dp"
-                    android:gravity="center_horizontal"
-
-                    android:layout_marginStart="20dp"
+                    android:gravity="center"
                     android:onClick="setDate"
                     android:text="@string/date_button_set"
                     android:layout_marginRight="15dp"
@@ -137,7 +134,7 @@
                     android:id="@+id/secondActivityBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:onClick="goToSecondActivity"
                     android:text="@string/go_to_second_activity"
                     android:layout_marginLeft="15dp"

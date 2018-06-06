@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Mobile Applications Assignment_1</string>
     <string name="swapText">Display Image</string>
-    <string name="author">Mikal Viencek  5/31/2018</string>
+    <string name="author">Mikal Viencek  6/6/2018</string>
     <string name="greetings">Hello World!</string>
     <string name="home">Hide</string>
     <string name="enter_name">Enter Name: </string>

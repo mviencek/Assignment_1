@@ -76,21 +76,13 @@ public class SecondActivity extends AppCompatActivity implements Matches.OnListF
     private boolean isLocationEnabled() {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
-    
+
     public void networkUpdates() {
         if (!checkLocation()) {
             return;
         }
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             myLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 1000, locationListenerNetwork);
-        }
-
-}
-    private final LocationListener locationListenerNetwork = new LocationListener() {
-        public void onLocationChanged(Location location) {
-            myLocation = location;
-            viewModel.clear();
             showProgressDialog();
             Intent intent = getIntent();
             Bundle b = intent.getExtras();
@@ -113,6 +105,37 @@ public class SecondActivity extends AppCompatActivity implements Matches.OnListF
                         viewPager.setAdapter(adapter);
                         tabLayout.setupWithViewPager(viewPager);
                         hideProgressDialog();
+                    }
+
+            );
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 1000, locationListenerNetwork);
+        }
+
+}
+    private final LocationListener locationListenerNetwork = new LocationListener() {
+        public void onLocationChanged(Location location) {
+            myLocation = location;
+            viewModel.clear();
+            Intent intent = getIntent();
+            Bundle b = intent.getExtras();
+            viewModel.getMatchedItems(
+                    (ArrayList<MatchesModel> matches) -> {
+                        //place the parcelable in the bundle
+                        b.putParcelableArrayList("matches", matches);
+                        if(myLocation != null) {
+                            b.putDouble("myLat", myLocation.getLatitude());
+                            b.putDouble("myLong", myLocation.getLongitude());
+                        }
+                        if(adapter == null) {
+                            adapter = new FragAdapter(SecondActivity.this, getSupportFragmentManager(), b);
+                        }
+                        else{
+                            adapter.setData(b);
+                            adapter.notifyDataSetChanged();
+                        }
+                        // set the adapter
+                        viewPager.setAdapter(adapter);
+                        tabLayout.setupWithViewPager(viewPager);
                     }
 
             );
